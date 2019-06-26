@@ -5,7 +5,6 @@ const components = [ElTestRow, ElTestCol]
 
 export default function install(Vue){
   //注册组件
-  console.log(components)
   components.forEach(component => {
     console.log(component)
     Vue.component(component.name, component)

@@ -1,22 +1,34 @@
 <template>
   <div class="home">
-    <el-test-row>
-      <el-test-col :span="2"></el-test-col>
-      <el-test-col :span="8"></el-test-col>
+    <el-test-row type="flex" justify="center">
+      <el-test-col :span="2">
+        hello
+      </el-test-col>
+      <el-test-col :span="6">
+        hello test
+      </el-test-col>
     </el-test-row>
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+
+    <el-row type="flex" justify="center">
+      <el-col :span="2" :offset="0">
+        hello
+      </el-col>
+      <el-col :span="6">
+        world
+      </el-col>
+    </el-row>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
 
 export default {
   name: 'home',
   components: {
-    HelloWorld
   }
 }
 </script>
+<style>
+</style>
+
