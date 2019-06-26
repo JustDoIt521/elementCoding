@@ -13,9 +13,10 @@
 }
 
 /* 两个class连写 
-  class1  class2   两个class 之间有空格 代表父子级 class2出现在class1的子级元素才会有效果
-  class1class2  两个class之间无空格  代表两个class出现在同一个元素上 class2才会有效果
-  class1,class2 两个class之间有逗号  代表两个clas同级
+  class1>class2    两个class之间有>号 代表父子级
+  class1  class2   两个class 之间有空格 代表上下级 class2出现在class1的子级元素才会有效果
+  class1class2     两个class之间无空格  代表两个class出现在同一个元素上 class2才会有效果
+  class1,class2    两个class之间有逗号  代表两个clas同级
 */
 
 /*----------水平布局-----------*/
