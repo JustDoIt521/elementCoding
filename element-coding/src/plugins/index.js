@@ -1,21 +1,22 @@
 import ElTestRow from "./el-test-row/row.js"
 import ElTestCol from "./el-test-col/col.js"
+import ElTestContainer from "./el-test-container/container"
 
-const components = [ElTestRow, ElTestCol]
+const components = [ElTestRow, ElTestCol, ElTestContainer]
 
-export default function install(Vue){
+const install = function (Vue){
   //注册组件
   components.forEach(component => {
-    console.log(component)
     Vue.component(component.name, component)
   })
 }
 
 if(typeof window !== undefined && window.Vue) {
   console.log('using install')
-  // install(window.Vue)
 }
 
-// export default {
-//   install
-// }
+
+//Vue.use会检测引入的组件中是否包含install方法，并执行该方法
+export default {
+  install
+}

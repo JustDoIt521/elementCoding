@@ -8,34 +8,35 @@ export default {
       type: Number,
       default: 24
     },
-
-    // 偏移量 默认为0
-    offset: {
-      type: Number,
-      default: 0
-    }
+    // 偏移量
+    offset: Number,
+    // 左侧偏移量
+    pull: Number,
+    // 右侧偏移量
+    push: Number
   },
 
   computed: {
     gutter () {
       let parent = this.$parent
-      
+      while (parent && parent.$options.componentName !== 'ElTestRow') {
+        parent = this.$parent
+      }
       return parent ? parent.gutter : 0
     }
   },
 
   render(h) {
-    console.log(this.$parent)
-    let classStyle = [];
+    let classStyle = []
     let style = {}
 
     if (this.gutter) {
-      style.marginLeft = `${this.gutter/2}px`
-      style.marginRight = style.marginLeft
+      style.paddingLeft = `${this.gutter/2}px`
+      style.paddingRight = style.paddingLeft
     }
 
     // 遍历属性 查询对应的class
-    ['span', 'offset'].forEach(prop => {
+    ['span', 'offset', 'pull', 'push'].forEach(prop => {
       //保证属性存在时才添加class
       if(this[prop] || this[prop]===0)
         classStyle.push(

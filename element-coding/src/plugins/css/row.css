@@ -1,6 +1,9 @@
 .el-test-row{
-  width:100%;
+  position: relative;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
 }
+
 /* 添加伪类元素 解决子类元素设置为float时无法撑开el-test-row */
 .el-test-row:after{
   content: '';
@@ -12,7 +15,8 @@
   display: flex;
 }
 
-/* 两个class连写   
+/* 
+  两个class连写   
   class1>class2    两个class之间有>号 代表父子级
   class1  class2   两个class 之间有空格 代表上下级 class2出现在class1的子级元素才会有效果
   class1class2     两个class之间无空格  代表两个class出现在同一个元素上 class2才会有效果

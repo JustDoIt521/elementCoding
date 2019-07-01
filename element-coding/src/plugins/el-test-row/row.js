@@ -1,6 +1,7 @@
 export default {
   // 驼峰命名法
   name: 'ElTestRow',
+  componentName: 'ElTestRow',
   props: {
     gutter: Number,
     // 渲染的标签类型

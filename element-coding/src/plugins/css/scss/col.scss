@@ -1,0 +1,36 @@
+[class*="el-test-col"]{
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  float: left;
+}
+
+[class*="el-test-col-pull-"]{
+  position: relative;
+}
+
+[class*="el-test-col-push-"]{
+  position: relative;
+}
+
+@for $i from 0 through 24 {
+  // 栅格宽度
+  .el-test-col-#{$i}{
+    width: (1 / 24 * 100 * $i) * 1%;
+    border: 1px solid #DCDCDC;
+  }
+
+  // 栅格右移
+  .el-test-col-offset-#{$i}{
+    margin-left: (1 / 24 * 100 * $i) * 1%;
+  }
+
+  // 栅格左移
+  .el-test-col-pull-#{$i}{
+    right:  (1 / 24 * 100 * $i) * 1%;
+  }
+
+  // 栅格右移
+  .el-test-col-push-#{$i}{
+    left:  ( 1 / 24 * 100 * $i) * 1%;
+  }
+}
