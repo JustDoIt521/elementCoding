@@ -1,0 +1,32 @@
+/* 整体布局 */
+.el-test-container{
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display:flex;
+  flex:1;
+  -webkit-box-sizing:border-box;
+  box-sizing:border-box;
+}
+
+/* 是否垂直 */
+.el-test-is-vertical{
+  flex-direction: column;
+}
+
+
+/* 顶部header样式 */
+.el-test-header{
+}
+
+/* 侧边栏aside样式 */
+.el-test-aside{
+}
+
+/* 主体main样式 */
+.el-test-main{
+  flex: 1;
+}
+
+/* 底部footer样式 */
+.el-test-footer{
+}

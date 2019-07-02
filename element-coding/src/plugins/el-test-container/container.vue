@@ -1,8 +1,8 @@
 <template>
   <!-- elemen为什么要用section不懂 -->
-  <div class="el-test-container" :class="{'is-vertical': isVertical}">
+  <section class="el-test-container" :class="{'el-test-is-vertical': isVertical}">
     <slot></slot>
-  </div>
+  </section>
 </template>
 <script>
 export default {

@@ -1,8 +1,21 @@
 import ElTestRow from "./el-test-row/row.js"
 import ElTestCol from "./el-test-col/col.js"
 import ElTestContainer from "./el-test-container/container"
+import ElTestHeader from "./el-test-header/header"
+import ElTestFooter from "./el-test-footer/footer"
+import ElTestAside from "./el-test-aside/aside"
+import ElTestMain from "./el-test-main/main"
 
-const components = [ElTestRow, ElTestCol, ElTestContainer]
+
+const components = [
+  ElTestRow, 
+  ElTestCol, 
+  ElTestContainer, 
+  ElTestHeader, 
+  ElTestFooter, 
+  ElTestAside, 
+  ElTestMain
+]
 
 const install = function (Vue){
   //注册组件

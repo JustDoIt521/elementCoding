@@ -8,6 +8,7 @@ import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css'
 import ElTestUI from '@/plugins/index.js'
 import '@/plugins/css/scss/col.scss'
+import '@/plugins/css/layout.css'
 
 // 导入组件
 Vue.use(ElTestUI);
