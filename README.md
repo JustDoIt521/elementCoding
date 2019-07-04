@@ -14,3 +14,6 @@
 
 #2019-07-01
 2019年7月1日   阅读container组件   发现了this.$slots的遍历   然而对compontentOptions产生疑惑  它是用来干嘛的？ 记录子组件吗？
+
+#2019-07-02
+2019年7月2日   记录container学到了flex布局的知识，感觉对flex的理解前进了一大步
