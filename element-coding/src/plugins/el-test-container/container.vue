@@ -23,7 +23,7 @@ export default {
       }
       
       console.log(this.$slots)
-      console.log(this.$slots.default)
+      console.warn(this.$slots.default)
 
       // 遍历子节点 判断是否含有header  footer组件  elementApi中有描述 子元素含有 header 或 footer 时为子元素排列方向为 vertical 不然为 horizontal
       return this.$slots && this.$slots.default? 
