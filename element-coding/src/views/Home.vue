@@ -27,6 +27,31 @@
       <div style="flex:0 1 1000px;border:1px solid red;height:30px;"></div>
       <div style="flex:0 4 1000px;border:1px solid green;height:30px;"></div>
     </div>
+
+    <div style="line-height:20px;">
+      line-height:20px
+      <div style="font-size:20px;">
+        20px child
+      </div>
+    </div>
+    <div style="line-height:1.5">
+      line-height:1.5
+      <div style="font-size:20px;">
+        1.5 child
+      </div>
+    </div>
+    <div style="line-height:150%;">
+      line-height:150%
+      <div style="font-size:20px;">
+        150% child
+      </div>
+    </div>
+    <div style="line-height:normal">
+      line-height:normal
+      <div style="font-size:20px;">
+        normal child
+      </div>
+    </div>
   </div>
 </template>
 
