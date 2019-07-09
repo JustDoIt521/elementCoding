@@ -52,6 +52,12 @@
         normal child
       </div>
     </div>
+    <el-test-button>222</el-test-button>
+    <div class="demo1">demo1</div>
+    <div class="demo2">demo2</div>
+    <div class="demo3">demo3</div>
+    <div class="demo4" width='33'>demo4</div>
+    <div class="demo5" width='44'>demo5</div>
   </div>
 </template>
 
@@ -72,5 +78,17 @@ export default {
 }
 </script>
 <style>
+.demo1+.demo2{
+  border:1px solid red;
+}
+.demo3{
+  width:30px;
+}
+.demo4{
+  height:30px;
+}
+div[width='33']{
+  border: 1px solid  blue;
+}
 </style>
 
