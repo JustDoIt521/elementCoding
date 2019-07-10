@@ -23,14 +23,21 @@ export default {
     }
   },
 
+  computed: {
+    style() {
+      const ret = {}
+      if (this.gutter) {
+        ret.marginLeft = `-${this.gutter/2}px`
+        ret.marginRight = ret.marginLeft
+      }
+      return ret
+    }
+  },
+
   render(h) {
     let classStyle = []
-    let style = {}
+
     //为什么在设置gutter的时候  父组件要设置margin？  是为了保证col第一个和最后一个仍然贴紧row的左侧和右侧  但是这样做会撑开el-row
-    if (this.gutter) {
-      style.marginLeft = `-${this.gutter/2}px`
-      style.marginRight = style.marginLeft
-    }
 
     classStyle = [
       'el-test-row',
@@ -41,7 +48,7 @@ export default {
 
     return h(this.tag,{
       class: classStyle,
-      style
+      style: this.style
     }, this.$slots.default)
   },
 }

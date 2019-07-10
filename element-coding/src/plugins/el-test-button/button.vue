@@ -1,6 +1,6 @@
 <template>
   <button class="el-test-button"
-    @click="handelClick"
+    @click="handleClick"
     :disabled="buttonDisabled || loading"
     :type="nativeType"
     :class="[
@@ -48,10 +48,26 @@ export default {
     //是否圆角按钮
     round: Boolean,
     //是否圆形按钮
-    circle: Boolean
+    circle: Boolean,
+    //原生button属性  包含 button submit  reset
+    nativeType: {
+      type: String,
+      default: 'button'
+    },
   },
+
+  computed: {
+    buttonSize() {
+      return this.size
+    },
+
+    buttonDisabled() {
+      return this.disabled
+    }
+  },
+
   methods: {
-    handleCiclk(evt) {
+    handleClick(evt) {
       this.$emit('click', evt);
     }
   },

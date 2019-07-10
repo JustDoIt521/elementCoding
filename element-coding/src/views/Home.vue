@@ -1,6 +1,11 @@
 <template>
   <div class="home">
-    <el-container>
+    <el-test-row :gutter="gutter">
+      <el-test-col :span="4">111</el-test-col>
+      <el-test-col :span="4">222</el-test-col>
+    </el-test-row>
+    <el-test-button @click="handleClick">click</el-test-button>
+    <!-- <el-container>
       <el-header>header</el-header>
       <el-container>
         <el-aside>aside</el-aside>
@@ -57,7 +62,7 @@
     <div class="demo2">demo2</div>
     <div class="demo3">demo3</div>
     <div class="demo4" width='33'>demo4</div>
-    <div class="demo5" width='44'>demo5</div>
+    <div class="demo5" width='44'>demo5</div> -->
   </div>
 </template>
 
@@ -74,6 +79,9 @@ export default {
     }
   },
   methods: {
+    handleClick: function(){
+      this.gutter++;
+    }
   },
 }
 </script>
