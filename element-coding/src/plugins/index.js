@@ -6,6 +6,8 @@ import ElTestFooter from "./el-test-footer/footer"
 import ElTestAside from "./el-test-aside/aside"
 import ElTestMain from "./el-test-main/main"
 import ElTestButton from "./el-test-button/button"
+import ElTestButtonGroup from "./el-test-button/buttonGroup"
+
 
 
 const components = [
@@ -16,7 +18,8 @@ const components = [
   ElTestFooter, 
   ElTestAside, 
   ElTestMain,
-  ElTestButton
+  ElTestButton,
+  ElTestButtonGroup
 ]
 
 const install = function (Vue){

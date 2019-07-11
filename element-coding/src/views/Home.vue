@@ -4,7 +4,14 @@
       <el-test-col :span="4">111</el-test-col>
       <el-test-col :span="4">222</el-test-col>
     </el-test-row>
-    <el-test-button @click="handleClick">click</el-test-button>
+    <el-test-button @click="handleClick" size="small">click</el-test-button>
+    <el-button @click="handleClick">click</el-button>
+    <el-test-button-group>
+      <el-test-button @click="handleClick" size="small">click</el-test-button>
+    <el-test-button @click="handleClick" size="small">click</el-test-button>
+    <el-test-button @click="handleClick" size="small">click</el-test-button>
+
+    </el-test-button-group>
     <!-- <el-container>
       <el-header>header</el-header>
       <el-container>
@@ -63,6 +70,12 @@
     <div class="demo3">demo3</div>
     <div class="demo4" width='33'>demo4</div>
     <div class="demo5" width='44'>demo5</div> -->
+    <div class="demo-8">demo8</div>
+    <div class="demo-9">demo9</div>
+    <div class="test-1">test1</div>
+    <div class="demo8">demo</div>
+    <div class="demo-1">demmm</div>
+    <div class="BBdemo">demmm</div>
   </div>
 </template>
 
@@ -86,17 +99,8 @@ export default {
 }
 </script>
 <style>
-.demo1+.demo2{
-  border:1px solid red;
-}
-.demo3{
-  width:30px;
-}
-.demo4{
-  height:30px;
-}
-div[width='33']{
-  border: 1px solid  blue;
+[class$='demo']{
+  color:blue;
 }
 </style>
 
