@@ -1,12 +1,12 @@
-import ElTestRow from "./el-test-row/row.js"
-import ElTestCol from "./el-test-col/col.js"
-import ElTestContainer from "./el-test-container/container"
-import ElTestHeader from "./el-test-header/header"
-import ElTestFooter from "./el-test-footer/footer"
-import ElTestAside from "./el-test-aside/aside"
-import ElTestMain from "./el-test-main/main"
-import ElTestButton from "./el-test-button/button"
-import ElTestButtonGroup from "./el-test-button/buttonGroup"
+import ElTestRow from "./packages/el-test-row/row.js"
+import ElTestCol from "./packages/el-test-col/col.js"
+import ElTestContainer from "./packages/el-test-container/container"
+import ElTestHeader from "./packages/el-test-header/header"
+import ElTestFooter from "./packages/el-test-footer/footer"
+import ElTestAside from "./packages/el-test-aside/aside"
+import ElTestMain from "./packages/el-test-main/main"
+import ElTestButton from "./packages/el-test-button/button"
+import ElTestButtonGroup from "./packages/el-test-button/buttonGroup"
 
 
 

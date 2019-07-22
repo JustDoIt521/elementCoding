@@ -28,3 +28,5 @@
 2019年7月10日    解决为什么使用computed的问题   博客篇el-row 问题二。 了解了render为视图绘制，当变量发生改变，就会重新执行render
 #2019-07-11
 2019年7月11日    el-button-group组件模拟，掘金总结button组件
+#2019-07-22
+2019年7月22日    el-radio组件部分代码实现  模仿了mixins的emitter文件  然鹅不解其意.ing
