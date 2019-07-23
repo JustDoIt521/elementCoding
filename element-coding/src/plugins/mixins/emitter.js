@@ -14,6 +14,7 @@ function broadcast(componentName, eventName, params) {
 
 export default {
   methods: {
+    // 分发事件
     dispatch(componentName, eventName, params) {
       var parent = this.$parent || this.$root
       var name = parent.$options.componentName

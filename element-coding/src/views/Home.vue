@@ -1,6 +1,10 @@
 <template>
   <div class="home">
-    <el-radio v-model="radio"></el-radio>
+    <!-- <el-radio-group v-model="radio" ref="radioGroup"> -->
+    <el-radio label="1"></el-radio>
+    <el-radio label="2"></el-radio>
+    <el-radio label="3"></el-radio>
+    <!-- </el-radio-group> -->
   </div>
 </template>
 
@@ -14,11 +18,12 @@ export default {
   data () {
     return {
       gutter: 0,
-      radio: ''
+      radio: '1'
     }
   },
   mounted() {
     console.warn(this.$children)
+    console.warn(this.$children[0].value)
   },
   methods: {
     handleClick: function(){
