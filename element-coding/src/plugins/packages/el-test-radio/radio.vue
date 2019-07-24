@@ -1,16 +1,17 @@
 <template>
   <label
-    class="el-test-radio"
+    class="el-radio"
     :class="[
-      // radios大小仅在border为true时有效
-      border && radioSize? 'el-test-radio--' + radioSize : '',
+      // radio大小仅在border为true时有效
+      border && radioSize? 'el-radio--' + radioSize : '',
       // 是否禁用
-      {'is-test-disabled': isDisabled},
-      {'is-test-focus': focus},
+      {'is-disabled': isDisabled},
+      // 焦点是否在此处
+      {'is-focus': focus},
       // 是否显示边框
-      {'is-test-bordered': border},
+      {'is-bordered': border},
       // 是否选中当前按钮
-      {'is-test-checked': model === label}
+      {'is-checked': model === label}
     ]"
     role="radio"
     :aria-checked="model===label"
@@ -18,16 +19,16 @@
     :tabIndex="tabIndex"
     @keydown.space.stop.prevent="model = isDisabled ? model : label"
   >
-    <span class="el-test-radio__input"
+    <span class="el-radio__input"
       :class="{
-        'is-test-disabled': isDisabled,
+        'is-disabled': isDisabled,
         'is-checked': model === label  
       }"
     >
-      <span class="el-test-radio__inner"></span>
+      <span class="el-radio__inner"></span>
         <input 
           ref="radio"
-          class="el-test-radio__original"
+          class="el-radio__original"
           :value="label"
           type="radio"
           aria-hidden="true"
@@ -41,16 +42,17 @@
         >
       </span>
 
-      <span class="el-test-radio__label" @keydown.stop>
+      <!-- keydown.stop 阻止事件继续冒泡 -->
+      <span class="el-radio__label" @keydown.stop>
         <slot></slot>
         <!-- 如果没有设置radio显示的值  则显示label值 -->
-        <template v-if="!slots.default">{{label}}</template>
+        <template v-if="!$slots.default">{{label}}</template>
       </span>
   </label>
 </template>
 <script>
 // 引入分发广播事件
-import {emitter} from "@/plugins/mixins/emitter.js"
+import emitter from "@/plugins/mixins/emitter.js"
 export default {
   name: 'ElTestRadio',
 
@@ -69,7 +71,7 @@ export default {
 
   data () {
     return {
-      focus: false   //元素聚焦 以及 失去焦点时触发  通过是否聚焦改变样式变化
+      focus: false,   //元素聚焦 以及 失去焦点时触发  通过是否聚焦改变样式变化
     }
   },
 
@@ -81,6 +83,7 @@ export default {
         if (parent.$options.componentName !== 'ElTestRadioGroup') {
           parent = parent.$parent
         } else {
+          // eslint-disable-next-line
           this._radioGroup = parent
           return true
         }
@@ -98,6 +101,7 @@ export default {
         if (this.isGroup) {
           this.dispatch('ElTestRadioGroup', 'input', [val])
         } else {
+        console.warn(val);
           this.$emit('input', val)
         }
         this.$refs.radio && (this.$refs.radio.checked = this.model === this.label)
@@ -134,7 +138,7 @@ export default {
   methods: {
     handleChange() {
       this.$nextTick(() => {
-        this.$emit('change', this,model)
+        this.$emit('change', this.model)
         this.isGroup && this.dispatch('ElTestRadioGroup', 'handleChange', this.model)
       })
     }

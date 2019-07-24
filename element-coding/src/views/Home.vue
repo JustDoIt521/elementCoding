@@ -1,10 +1,14 @@
 <template>
   <div class="home">
-    <!-- <el-radio-group v-model="radio" ref="radioGroup"> -->
+    <el-radio-group v-model="radio" ref="radioGroup">
     <el-radio label="1"></el-radio>
     <el-radio label="2"></el-radio>
     <el-radio label="3"></el-radio>
-    <!-- </el-radio-group> -->
+    <!-- <el-radio v-model="radio" label="4"></el-radio> -->
+    </el-radio-group>
+    <!-- <el-test-radio v-model="radio" label="4"></el-test-radio>
+    <el-test-radio v-model="radio" label="5"></el-test-radio>
+    <el-test-radio v-model="radio" label="6"></el-test-radio> -->
   </div>
 </template>
 
@@ -18,7 +22,7 @@ export default {
   data () {
     return {
       gutter: 0,
-      radio: '1'
+      radio: '4'
     }
   },
   mounted() {
