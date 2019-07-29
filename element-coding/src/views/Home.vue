@@ -1,11 +1,13 @@
 <template>
   <div class="home">
-    <el-radio-group v-model="radio" ref="radioGroup">
-    <el-radio label="1"></el-radio>
-    <el-radio label="2"></el-radio>
-    <el-radio label="3"></el-radio>
+    <el-test-radio v-model="radio" label="1" :disabled="true"></el-test-radio>
+    <el-test-radio v-model="radio" label="2"></el-test-radio>
+    <el-test-radio v-model="radio" label="3"></el-test-radio>
     <!-- <el-radio v-model="radio" label="4"></el-radio> -->
-    </el-radio-group>
+
+    <input type="radio" name="first" value="first_1">
+    <input type="radio" name="first" value="first_2">
+    <input type="radio" name="first" value="first_3">
     <!-- <el-test-radio v-model="radio" label="4"></el-test-radio>
     <el-test-radio v-model="radio" label="5"></el-test-radio>
     <el-test-radio v-model="radio" label="6"></el-test-radio> -->
@@ -26,8 +28,8 @@ export default {
     }
   },
   mounted() {
-    console.warn(this.$children)
-    console.warn(this.$children[0].value)
+    // console.warn(this.$children)
+    // console.warn(this.$children[0].value)
   },
   methods: {
     handleClick: function(){

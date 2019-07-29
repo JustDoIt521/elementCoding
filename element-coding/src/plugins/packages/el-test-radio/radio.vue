@@ -98,10 +98,10 @@ export default {
       },
 
       set(val) {
+        console.warn(val);
         if (this.isGroup) {
           this.dispatch('ElTestRadioGroup', 'input', [val])
         } else {
-        console.warn(val);
           this.$emit('input', val)
         }
         this.$refs.radio && (this.$refs.radio.checked = this.model === this.label)
@@ -139,6 +139,8 @@ export default {
     handleChange() {
       this.$nextTick(() => {
         this.$emit('change', this.model)
+        console.log('change')
+        // 根据是否是group调用 分发dispatch事件
         this.isGroup && this.dispatch('ElTestRadioGroup', 'handleChange', this.model)
       })
     }

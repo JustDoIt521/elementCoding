@@ -8,18 +8,18 @@
   </div>
 </template>
 <script>
-import Emitter from "@/plugins/mixins"
+import Emitter from "@/plugins/mixins/emitter.js";
 // 上下左右键码
 const keyCode = Object.freeze({
   LEFT: 37,
   UP: 38,
   RIGHT: 39,
   DOWN: 40
-})
+});
 export default {
-  name: 'ElTestRadioGroup',
+  name: "ElTestRadioGroup",
 
-  componentName: 'ElTestRadioGroup',
+  componentName: "ElTestRadioGroup",
 
   mixins: [Emitter],
 
@@ -33,33 +33,73 @@ export default {
 
   computed: {
     _elFormItemSize() {
-      return (this.elFormItem || {}).elFormItemsSize
+      return (this.elFormItem || {}).elFormItemsSize;
     },
 
     radioGroupSize() {
-      return this.size || this._elFormItemSize || (this.$ELEMENT || {}).size
+      return this.size || this._elFormItemSize || (this.$ELEMENT || {}).size;
     }
   },
 
   created() {
-    this.$on('handleChange', value => {
-      this.$emit('change', value)
-    })
+    this.$on("handleChange", value => {
+      this.$emit("change", value);
+    });
   },
 
   mounted() {
     // 当radioGroup没有默认选项时，第一个可以选中Tab导航
-    const radios = this.$el.querySelectorAll('[type=radio]')
-    const firstLabel = this.$el.querySelectorAll('[type=radio]')[0]
-    if(![].some.calll(radios, radio => radio.checked) && firstLabel) {
-      firstLabel.tabIndex = 0
+    const radios = this.$el.querySelectorAll("[type=radio]");
+    const firstLabel = this.$el.querySelectorAll("[type=radio]")[0];
+    if (![].some.call(radios, radio => radio.checked) && firstLabel) {
+      firstLabel.tabIndex = 0;
     }
   },
 
   methods: {
-    handleKeyDown(e) {
-      
+    handleKeydown(e) {
+      // 左右上下按键 可以在radio组内切换不同选项
+      const target = e.target;
+      const className = target.nodeName === "INPUT" ? "[type=radio]" : "[role=radio]";
+      const radios = this.$el.querySelectorAll(className);
+      const length = radios.length;
+      const index = [].indexOf.call(radios, target);
+      const roleRadios = this.$el.querySelectorAll("[role=radio]");
+      switch (e.keyCode) {
+        case keyCode.LEFT:
+        case keyCode.UP:
+          e.stopPropagation();
+          e.preventDefault();
+          if (index === 0) {
+            roleRadios[length - 1].click();
+            roleRadios[length - 1].focus();
+          } else {
+            roleRadios[index - 1].click();
+            roleRadios[index - 1].focus();
+          }
+          break;
+        case keyCode.RIGHT:
+        case keyCode.DOWN:
+          if (index === length - 1) {
+            e.stopPropagation();
+            e.preventDefault();
+            roleRadios[0].click();
+            roleRadios[0].focus();
+          } else {
+            roleRadios[index + 1].click();
+            roleRadios[index + 1].focus();
+          }
+          break;
+        default:
+          break;
+      }
+    }
+  },
+
+  watch: {
+    value() {
+      // this.dispatch('ElFormItem', 'el.form.change', [this.value])
     }
   }
-}
+};
 </script>
