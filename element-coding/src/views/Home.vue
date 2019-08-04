@@ -1,16 +1,10 @@
 <template>
   <div class="home">
-    <el-test-radio v-model="radio" label="1" :disabled="true"></el-test-radio>
+    <el-test-radio v-model="radio" label="1"></el-test-radio>
     <el-test-radio v-model="radio" label="2"></el-test-radio>
     <el-test-radio v-model="radio" label="3"></el-test-radio>
-    <!-- <el-radio v-model="radio" label="4"></el-radio> -->
 
-    <input type="radio" name="first" value="first_1">
-    <input type="radio" name="first" value="first_2">
-    <input type="radio" name="first" value="first_3">
-    <!-- <el-test-radio v-model="radio" label="4"></el-test-radio>
-    <el-test-radio v-model="radio" label="5"></el-test-radio>
-    <el-test-radio v-model="radio" label="6"></el-test-radio> -->
+    <input :value="radio" :input="changeInput" type="radio">
   </div>
 </template>
 
@@ -24,7 +18,9 @@ export default {
   data () {
     return {
       gutter: 0,
-      radio: '4'
+      radio: '4',
+      inputValue: '222',
+      radioValue: ''
     }
   },
   mounted() {
@@ -32,8 +28,8 @@ export default {
     // console.warn(this.$children[0].value)
   },
   methods: {
-    handleClick: function(){
-      this.gutter++;
+    changeInput(val) {
+      console.warn(val)
     }
   },
 }

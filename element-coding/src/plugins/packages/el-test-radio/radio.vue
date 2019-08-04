@@ -98,7 +98,7 @@ export default {
       },
 
       set(val) {
-        console.warn(val);
+        console.warn(val)
         if (this.isGroup) {
           this.dispatch('ElTestRadioGroup', 'input', [val])
         } else {
@@ -136,10 +136,16 @@ export default {
   },
 
   methods: {
+    test1() {
+      console.log('mouseDown')
+    },
+    test2() {
+      console.log('click')
+    },
     handleChange() {
+      console.log('change')
       this.$nextTick(() => {
         this.$emit('change', this.model)
-        console.log('change')
         // 根据是否是group调用 分发dispatch事件
         this.isGroup && this.dispatch('ElTestRadioGroup', 'handleChange', this.model)
       })
@@ -147,11 +153,4 @@ export default {
   }
 }
 
-/**
- * tabIndex
- * mixnis
- * aria-hidden   残障人士如失明的人使用识读设备（自动读取内容并自动播放出来），播放到带此属性的内容时会自动跳过，以免残障人士混淆！
- * focus
- * blur  
- */
 </script>
