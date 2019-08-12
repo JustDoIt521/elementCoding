@@ -34,3 +34,7 @@
 2019年7月23日    el-radio解读 mixnis代码 emitter.js解读  了解属性  focus  blur   aria-
 #2019-08-04
 2019年8月4日    el-radio组件具体分析 并完成博客 测试了v-model的功能，感觉又有所得
+#2019-08-08
+2019年8月8日    el-radio-group组件研究  感觉学到不少  call  some    object.assign
+#2019-08-12
+2019年8月12日    el-radio-group博客完成编写
