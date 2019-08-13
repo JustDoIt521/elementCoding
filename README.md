@@ -38,3 +38,5 @@
 2019年8月8日    el-radio-group组件研究  感觉学到不少  call  some    object.assign
 #2019-08-12
 2019年8月12日    el-radio-group博客完成编写
+#2019-08-13
+2019年8月13日    el-input 部分代码实现 （感觉学完这个会贼强！）
