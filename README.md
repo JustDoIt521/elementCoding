@@ -20,23 +20,35 @@
 
 #2019-07-07
 2019年7月7日    发布el-container文章，决定css文件还是以scss文件为主来看！
+
 #2019-07-08
 2019年7月8日    研究button组件 主要是样式研究，line-height
+
 #2019-07-09
 2019年7月9日    从button组件总结class选择器知识
+
 #2019-07-10
 2019年7月10日    解决为什么使用computed的问题   博客篇el-row 问题二。 了解了render为视图绘制，当变量发生改变，就会重新执行render
+
 #2019-07-11
 2019年7月11日    el-button-group组件模拟，掘金总结button组件
+
 #2019-07-22
 2019年7月22日    el-radio组件部分代码实现  模仿了mixins的emitter文件  然鹅不解其意.ing
+
 #2019-07-23
 2019年7月23日    el-radio解读 mixnis代码 emitter.js解读  了解属性  focus  blur   aria-
+
 #2019-08-04
 2019年8月4日    el-radio组件具体分析 并完成博客 测试了v-model的功能，感觉又有所得
+
 #2019-08-08
 2019年8月8日    el-radio-group组件研究  感觉学到不少  call  some    object.assign
+
 #2019-08-12
 2019年8月12日    el-radio-group博客完成编写
+
 #2019-08-13
 2019年8月13日    el-input 部分代码实现 （感觉学完这个会贼强！）
+#2019-08-15
+2019年8月15日   el-input  部分属性

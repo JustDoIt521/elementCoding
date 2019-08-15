@@ -114,6 +114,7 @@ export default {
   
   mixins: [emitter],
   
+  // 这个属性干嘛的？
   inhertAttrs: false,
 
   inject: {
@@ -133,6 +134,83 @@ export default {
       isComposing: false,
       passwordVisible: false
     }
+  },
+
+  props: {
+    value: [String, Number],
+    // input框大小
+    size: String,
+    // 是否可被用户缩放
+    resize: String,
+    // 原生form属性
+    form: String,
+    // 是否禁用
+    disabled: Boolean,
+    // 设置是否只读
+    readonly: Boolean,
+    // input为text或者textarea
+    type: {
+      type: String,
+      default: 'text'
+    },
+    // 自适应高度 只对 type="textarea有效"
+    autosize: {
+      type: [Boolean, Object],
+      default: false
+    },
+    // 自动补全
+    autocomplate: {
+      type: String,
+      default: 'off'
+    },
+    autoComplate: {
+      type: String,
+      // 自定义默认标准
+      validator (val) {
+        process.env.NODE_DEV !== 'production' && console.warn('[Element Warn][Input]\'auto-complete\' property will be deprecated in next major version. please use \'autocomplete\' instead.');
+        return true
+      }
+    },
+    // 是否在输入的时候触发表单校验
+    validateEvent: {
+      type: Boolean,
+      default: true
+    },
+    // 输入框尾部图标
+    suffixIcon: String,
+    // 输入框头部图标
+    prefixIcon: String,
+    // 输入框关联的label字段 ? 
+    label: String,
+    // 是否显示清除按钮
+    clearable: {
+      type: Boolean,
+      default: false
+    },
+    // 是否显示密码切换图标
+    showPassword: {
+      type: Boolean,
+      default: false
+    },
+
+    showWordLimit: {
+      type: Boolean,
+      default: false
+    },
+    tabIndex: String
+  },
+  computed: {
+    // 可受控于外部form大小
+    _elFormItemSize() {
+      return (this.elFormItem || {}).elFormItemSize
+    },
+    validateState() {
+      return this.elFormItem ? this.elFormItem.validateState : ''
+    },
+    needStatusIcon() {
+      return this.elForm ? this.elForm.statusIcon : false
+    },
+    
   }
 }
 </script>

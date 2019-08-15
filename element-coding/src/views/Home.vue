@@ -1,9 +1,9 @@
 <template>
-  <div class="home">
+  <div id="home">
     <input @compositionstart="testStart" @compositionend="testEnd">
+    <el-input size="small" lable="input输入框" v-model="inputValue" style="width:20rem;"></el-input>
   </div>
 </template>
-
 <script>
 // @ is an alias to /src
 
@@ -13,6 +13,7 @@ export default {
   },
   data () {
     return {
+      inputValue: ''
     }
   },
   mounted() {
@@ -28,6 +29,4 @@ export default {
   },
 }
 </script>
-<style>
-</style>
 
