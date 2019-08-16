@@ -36,9 +36,7 @@
         @focus="handleFocus"
         @blur="handleBlur"
         @change="handleChange"
-        :aria-label="label"
-      >
-      </input>
+        :aria-label="label">
       <!-- 前置内容 -->
       <span class="el-input__prefix" v-if="$slots.prefix || prefixIcon">
         <slot name="prefix"></slot>
@@ -166,7 +164,7 @@ export default {
     autoComplate: {
       type: String,
       // 自定义默认标准
-      validator (val) {
+      validator () {
         process.env.NODE_DEV !== 'production' && console.warn('[Element Warn][Input]\'auto-complete\' property will be deprecated in next major version. please use \'autocomplete\' instead.');
         return true
       }
@@ -210,7 +208,203 @@ export default {
     needStatusIcon() {
       return this.elForm ? this.elForm.statusIcon : false
     },
-    
+    validateIcon() {
+      return {
+        validating: 'el-icon-loading',
+        success: 'el-icon-circle-check',
+        error: 'el-icon-circle-close'
+      }[this.validateState];
+    },
+    textareaStyle() {
+      return merge({}, this.textareaCalcStyle, {resize: this.resize})
+    },
+    inputSize() {
+      return this.size || this._elFormItemSize || (this.$ELEMENT || {}).size
+    },
+    inputDisabled() {
+      return this.disabled || (this.elForm || {}).disabled
+    },
+    nativeInputValue() {
+      return this.value === null || this.value === undefined ? '' : String(this.value)
+    },
+    showClear() {
+      return this.clearable &&
+        !this.inputDisabled &&
+        !this.readonly &&
+        this.nativeInputValue &&
+        (this.focused || this.hovering)
+    },
+    showPwdVisible() {
+      return this.showWordLimit &&
+        !this.inputDisabled &&
+        !this.readonly &&
+        (!!this.nativeInputValue || this.focused)
+    },
+    isWordLimitVisible() {
+      return this.showWordLimit && 
+        this.$attrs.maxlength &&
+        (this.type === 'text' || this.type === 'textarea') &&
+        !this.inputDisabled &&
+        !this.readonly &&
+        !this.showPassword
+    },
+    upperLimit() {
+      return this.$attrs.maxlength
+    },
+    textLength() {
+      if (typeof this.value === 'number') {
+        return String(this.value).length
+      }
+      return (this.value || '').length
+    },
+    inputExceed() {
+      return this.isWordLimitVisible && 
+        (this.textLength > this.upperLimit)
+    }
+  },
+  watch: {
+    value(val) {
+      this.$nextTick(this.resizeTextarea)
+      if (this.validateEvent) {
+        this.diispatch('ElFormItem', 'el.form.change', [val])
+      }
+    },
+    nativeInputValue() {
+      this.setNativeInputValue()
+    },
+    type() {
+      this.$nextTick(() => {
+        this.setNativeInputValue()
+        this.resizeTextarea()
+        this.updateIconOffset()
+      })
+    }
+  },
+  methods: {
+    focus() {
+      this.getInput().focus()
+    },
+    blur() {
+      this.getInput().blur()
+    },
+    getMigratingConfig() {
+      return {
+        props: {
+          'icon': 'icon is removed, use suffix-icon / prefix-icon instead.',
+          'on-icon-click': 'on-icon-click is removed.'
+        },
+        events: {
+          'click': 'click is removed.'
+        }
+      }
+    },
+    handleBlur(event) {
+      this.focus = false
+      this.$emit('blur', event)
+      if (this.validateEvent) {
+        this.dispatch('ElFormItem', 'el.form.blur', [this.value])
+      }
+    },
+    select() {
+      this.getInput().select()
+    },
+    resizeTextarea() {
+      if (this.$isServer) return;
+      const { autosize, type} = this
+      if (type !== 'textarea') return;
+      if (!autosize) {
+        this.textareaCalcStyle = {
+          minHeight: calcTextareaHeight(this.$refs.textarea).minHeight
+        }
+        return
+      }
+      const minRows = autosize.minRows
+      const maxRows = autosize.maxRows
+      this.textareaCalcStyle = calcTextareaHeight(this.$refs.textarea, minRows, maxRows)
+    },
+    setNativeInputValue() {
+      const input = this.getInput()
+      if (!input) return;
+      if (input.value === this.nativeInputValue) return;
+      input.value = this.nativeInputValue
+    },
+    handleFocus(event) {
+      this.focus = true
+      this.$emit('focus', event)
+    },
+    handleCompositionStart() {
+      this.isComposing = true
+    },
+    handleCompositionEnd(event) {
+      this.isComposing = false
+      this.handleInput(event)
+    },
+    handleInput(event) {
+      if (this.isComposing) return;
+      if (event.target.value === this.nativeInputValue) return
+      this.$emit('input', event.target.value)
+      this.$nextTick(this.setNativeInputValue)
+    },
+    handleChange(event) {
+      this.$emit('change', event.target.value)
+    },
+    calcIconOffset(place) {
+      let elList = [].slice.call(this.$el.querySelectorAll(`.el-input__${place}`) || [])
+      if (!elList.length) return;
+      let el = null
+      for (let i = 0; i < elList.length; i++) {
+        if (elList[i].parentNode === this.$el) {
+          el = elList[i]
+          break
+        }
+      }
+      if (!el) return;
+      const pendantMap = {
+        suffix: 'append',
+        prefix: 'prepend'
+      }
+      const pendant = pendantMap[place]
+      if (this.$slots[pendant]) {
+        el.style.transform = `translateX(${place === 'suffix' ? '-' : ''}${this.$el.querySelectorAll(`.el-input-group__${pandent}`).offsetWidth}px`
+      } else {
+        el.removeAttribute('style')
+      }
+    },
+    updateIconOffset() {
+      this.calcIconOffset('prefix')
+      this.calcIconOffset('suffix')
+    },
+    clear() {
+      this.$emit('input', '')
+      this.$emit('change', '')
+      this.$emit('clear')
+    },
+    handlePasswordVisible() {
+      this.passwordVisible = !this.passwordVisible
+      this.focus()
+    },
+    getInput() {
+      return this.$refs.input || this.$refs.textarea
+    },
+    getSuffixVisible() {
+      return this.$slots.suffix ||
+        this.suffixIcon ||
+        this.showClear ||
+        this.showPassword ||
+        this.isWordLimitVisible ||
+        (this.validateState && this.needStatusIcon)
+    }
+  },
+  created() {
+    this.$on('inputSelect', this.select)
+  },
+  mounted() {
+    this.setNativeInputValue()
+    this.resizeTextarea()
+    this.updateIconOffset()
+  },
+  updated() {
+    this.$nextTick(this.updateIconOffset)
   }
 }
 </script>

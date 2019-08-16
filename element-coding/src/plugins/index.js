@@ -9,6 +9,7 @@ import ElTestButton from "./packages/el-test-button/button"
 import ElTestButtonGroup from "./packages/el-test-button/buttonGroup"
 import ElTestRadio from "./packages/el-test-radio/radio"
 import ElTestRadioGroup from "./packages/el-test-radio/radio-group"
+import ElTestInput from "./packages/el-test-input/input"
 
 
 
@@ -23,7 +24,8 @@ const components = [
   ElTestButton,
   ElTestButtonGroup,
   ElTestRadio,
-  ElTestRadioGroup
+  ElTestRadioGroup,
+  ElTestInput
 ]
 
 const install = function (Vue){
